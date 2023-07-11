@@ -51,7 +51,7 @@ ul {
 		align-items: center;
 		padding: 10px;
 		margin-bottom: 10px;
-		background-color: $primary-300;
+		background-color: $primary-200;
 
 		&:last-child {
 			margin-bottom: 0;
@@ -59,11 +59,10 @@ ul {
 
 		span {
 			flex-grow: 1;
-			color: $primary-100;
-			
+
 			&.completed {
 				text-decoration: line-through;
-				color: $primary-100;
+				color: $accent-200;
 			}
 		}
 
