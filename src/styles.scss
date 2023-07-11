@@ -9,7 +9,7 @@ $bg-100: #1d1f21;
 $bg-200: #2c2e30;
 $bg-300: #444648;
 
-html, body {
+* {
     background-color: $bg-100;
     color: $text-200;
   }
