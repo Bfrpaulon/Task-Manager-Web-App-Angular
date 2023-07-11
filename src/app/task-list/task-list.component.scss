@@ -1,4 +1,4 @@
-// Colors
+// Color Variables
 $primary-100: #FF6600;
 $primary-200: #ff983f;
 $primary-300: #ffffa1;
@@ -13,77 +13,180 @@ $bg-100: #1D1F21;
 $bg-200: #2c2e30;
 $bg-300: #444648;
 
-// Styles
-.task-list {
-  h2 {
-    color: $text-100;
-  }
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  ul {
-    list-style-type: none;
-    padding: 0;
+// Variables
+$border-radius: 5px;
+$transition-speed: 0.3s;
 
-    li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
+// Global Styles
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: $text-200;
+  background-color: $bg-100;
+}
 
-      .completed {
-        text-decoration: line-through;
-      }
+// Header Styles
+h2 {
+  text-align: center;
+  margin-top: 50px;
+}
 
-      button {
-        margin-left: 8px;
-      }
-    }
-  }
+// Task List Styles
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 30px;
 
-  form {
-    input[type="text"] {
-      background-color: $bg-200;
-      color: $text-100;
-      border: none;
-      padding: 8px;
-      border-radius: 4px;
-      margin-bottom: 8px;
-    }
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: $bg-200;
+    border-radius: $border-radius;
+    transition: background-color $transition-speed;
 
-    button[type="submit"] {
-      background-color: $primary-100;
-      color: $text-100;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  }
-
-  .edit-form {
-    input[type="text"] {
+    &:hover {
       background-color: $bg-300;
-      color: $text-100;
-      border: none;
-      padding: 8px;
-      border-radius: 4px;
-      margin-bottom: 8px;
+    }
+
+    span {
+      flex-grow: 1;
+      margin-right: 10px;
+
+      &.completed {
+        text-decoration: line-through;
+        color: $text-100;
+      }
     }
 
     button {
       background-color: $primary-200;
       color: $text-100;
       border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
+      border-radius: $border-radius;
+      padding: 5px 10px;
       cursor: pointer;
+      transition: background-color $transition-speed;
 
-      &.cancel {
-        background-color: $accent-200;
+      &:hover {
+        background-color: $primary-300;
+      }
+
+      &:first-of-type {
+        margin-right: 10px;
       }
     }
   }
 }
 
-body {
-  background-color: $bg-100;
-  color: $text-200;
+// Form Styles
+form {
+  @include flex-center;
+  flex-wrap: wrap;
+
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: $border-radius;
+    border: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px $primary-200;
+    }
+  }
+
+  button[type="submit"] {
+    background-color: $primary-200;
+    color: $text-100;
+    border: none;
+    border-radius: $border-radius;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color $transition-speed;
+
+    &:hover {
+      background-color: $primary-300;
+    }
+  }
+}
+
+// Edited Task Styles
+div[ngIf="editedTask"] {
+  @include flex-center;
+
+  input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: $border-radius;
+    border: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px $primary-200;
+    }
+  }
+
+  button {
+    background-color: $accent-200;
+    color: $text-100;
+    border: none;
+    border-radius: $border-radius;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color $transition-speed;
+
+    &:hover {
+      background-color: $accent-100;
+    }
+
+    &:first-of-type {
+      margin-right: 10px;
+      background-color: $primary-200;
+
+      &:hover {
+        background-color: $primary-300;
+      }
+    }
+  }
+}
+
+// Media Queries
+@media only screen and (max-width: 768px) {
+  
+  // Task List Styles
+  ul {
+
+     li {
+       flex-wrap : wrap;
+
+       span{
+         margin-bottom :20px; 
+       }
+
+       button{
+         margin-top :20px; 
+       }
+     }
+   }
+
+   // Form Styles
+   form{
+     flex-direction : column;
+
+     input[type="text"]{
+       margin-bottom :20px; 
+     }
+   }
 }
