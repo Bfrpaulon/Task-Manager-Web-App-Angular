@@ -12,3 +12,9 @@
   <input type="text" [(ngModel)]="newTaskName" placeholder="Enter task name" required>
   <button type="submit">Add Task</button>
 </form>
+
+<div *ngIf="editedTask">
+  <input type="text" [(ngModel)]="editedTask.name">
+  <button (click)="saveTask()">Save</button>
+  <button (click)="cancelEdit()">Cancel</button>
+</div>
