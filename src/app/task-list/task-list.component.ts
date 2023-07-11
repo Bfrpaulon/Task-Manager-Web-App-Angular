@@ -30,11 +30,17 @@ export class TaskListComponent {
   }
 
   editTask(task: Task) {
-    this.editedTask = task;
+    this.editedTask = { ...task }; // create a copy of the task to edit
   }
 
   saveTask() {
-    this.editedTask = null;
+    if (this.editedTask) {
+      const taskIndex = this.tasks.findIndex(task => task === this.editedTask);
+      if (taskIndex !== -1) {
+        this.tasks[taskIndex] = this.editedTask;
+        this.editedTask = null;
+      }
+    }
   }
 
   cancelEdit() {
