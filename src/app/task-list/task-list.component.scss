@@ -59,10 +59,11 @@ ul {
 
 		span {
 			flex-grow: 1;
-
+			color: $primary-100;
+			
 			&.completed {
 				text-decoration: line-through;
-				color: $accent-200;
+				color: $primary-100;
 			}
 		}
 
