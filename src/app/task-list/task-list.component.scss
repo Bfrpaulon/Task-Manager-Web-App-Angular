@@ -1,192 +1,181 @@
-// Color Variables
-$primary-100: #FF6600;
+/* Color Variables */
+$primary-100: #ff6600;
 $primary-200: #ff983f;
 $primary-300: #ffffa1;
-
-$accent-100: #F5F5F5;
+$accent-100: #f5f5f5;
 $accent-200: #929292;
-
-$text-100: #FFFFFF;
+$text-100: #ffffff;
 $text-200: #e0e0e0;
-
-$bg-100: #1D1F21;
+$bg-100: #1d1f21;
 $bg-200: #2c2e30;
 $bg-300: #444648;
 
-// Mixins
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Global Styles */
+body {
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	color: $text-200;
+	background-color: $bg-100;
 }
 
-// Variables
-$border-radius: 5px;
-$transition-speed: 0.3s;
-
-// Global Styles
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  color: $text-200;
-  background-color: $bg-100;
-}
-
-// Header Styles
 h2 {
-  text-align: center;
-  margin-top: 50px;
+	color: $primary-100;
 }
 
-// Task List Styles
 ul {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 30px;
-
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: $bg-200;
-    border-radius: $border-radius;
-    transition: background-color $transition-speed;
-
-    &:hover {
-      background-color: $bg-300;
-    }
-
-    span {
-      flex-grow: 1;
-      margin-right: 10px;
-
-      &.completed {
-        text-decoration: line-through;
-        color: $text-100;
-      }
-    }
-
-    button {
-      background-color: $primary-200;
-      color: $text-100;
-      border: none;
-      border-radius: $border-radius;
-      padding: 5px 10px;
-      cursor: pointer;
-      transition: background-color $transition-speed;
-
-      &:hover {
-        background-color: $primary-300;
-      }
-
-      &:first-of-type {
-        margin-right: 10px;
-      }
-    }
-  }
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
-// Form Styles
+li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: $bg-200;
+	border-radius: 5px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+span {
+	flex-grow: 1;
+
+	&.completed {
+		text-decoration: line-through;
+		color: $accent-200;
+	}
+}
+
+button {
+	background-color: $primary-100;
+	color: $text-100;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	margin-left: 10px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: $primary-200;
+	}
+}
+
 form {
-  @include flex-center;
-  flex-wrap: wrap;
+	display: flex;
+	margin-bottom: 20px;
 
-  input[type="text"] {
-    flex-grow: 1;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: $border-radius;
-    border: none;
+	input[type="text"] {
+		flex-grow: 1;
+		padding: 10px;
+		border-radius: 5px;
+		border: none;
+		background-color: $bg-300;
+		color: $text-200;
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 5px $primary-200;
-    }
-  }
+		&:focus {
+			outline: none;
+			box-shadow: inset 0px -2px 0px $primary-100;
+		}
+	}
 
-  button[type="submit"] {
-    background-color: $primary-200;
-    color: $text-100;
-    border: none;
-    border-radius: $border-radius;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color $transition-speed;
+	button[type="submit"] {
+		background-color: $primary-100;
+		color: $text-100;
+		border: none;
+		border-radius: 5px;
+		padding: 10px;
+		margin-left: 10px;
+		cursor: pointer;
 
-    &:hover {
-      background-color: $primary-300;
-    }
-  }
+		&:hover {
+			background-color: $primary-200;
+		}
+	}
 }
 
-// Edited Task Styles
 div[ngIf="editedTask"] {
-  @include flex-center;
+	display: flex;
 
-  input[type="text"] {
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: $border-radius;
-    border: none;
+	input[type="text"] {
+		flex-grow: 1;
+		padding: 10px;
+		border-radius: 5px;
+		border: none;
+		background-color: $bg-300;
+		color: $text-200;
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 5px $primary-200;
-    }
-  }
+		&:focus {
+			outline: none;
+			box-shadow: inset 0px -2px 0px $primary-100;
+		}
+	}
 
-  button {
-    background-color: $accent-200;
-    color: $text-100;
-    border: none;
-    border-radius: $border-radius;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color $transition-speed;
+	button {
+		background-color: $primary-100;
+		color: $text-100;
+		border: none;
+		border-radius: 5px;
+		padding: 10px;
+		margin-left: 10px;
+		cursor: pointer;
 
-    &:hover {
-      background-color: $accent-100;
-    }
-
-    &:first-of-type {
-      margin-right: 10px;
-      background-color: $primary-200;
-
-      &:hover {
-        background-color: $primary-300;
-      }
-    }
-  }
+		&:hover {
+			background-color: $primary-200;
+		}
+	}
 }
 
-// Media Queries
-@media only screen and (max-width: 768px) {
-  
-  // Task List Styles
-  ul {
+/* Media Queries */
+@media screen and (max-width: 768px) {
+	li {
+		flex-direction: column;
 
-     li {
-       flex-wrap : wrap;
+		span.completed {
+			text-decoration: none;
+			color: $text-200;
+			margin-top: .5rem;
+			text-align: center;
+			font-size: .8rem;
+			font-style: italic;
+		}
 
-       span{
-         margin-bottom :20px; 
-       }
+		button {
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: .5rem;
+		}
+	}
 
-       button{
-         margin-top :20px; 
-       }
-     }
-   }
+	form {
+		flex-direction: column;
 
-   // Form Styles
-   form{
-     flex-direction : column;
+		input[type="text"] {
+			margin-bottom: .5rem;
+		}
 
-     input[type="text"]{
-       margin-bottom :20px; 
-     }
-   }
+		button[type="submit"] {
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: .5rem;
+		}
+	}
+
+	div[ngIf="editedTask"] {
+		flex-direction: column;
+
+		input[type="text"] {
+			margin-bottom: .5rem;
+		}
+
+		button {
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: .5rem;
+		}
+	}
 }
