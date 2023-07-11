@@ -1,3 +1,4 @@
+/* Variables */
 $primary-100: #ff6600;
 $primary-200: #ff983f;
 $primary-300: #ffffa1;
@@ -9,89 +10,83 @@ $bg-100: #1d1f21;
 $bg-200: #2c2e30;
 $bg-300: #444648;
 
-@mixin button-style {
-	background-color: $primary-100;
-	color: $text-100;
-	border-radius: 5px;
-	border: none;
-	padding: 10px 20px;
-	cursor: pointer;
-	transition: all 0.3s ease-in-out;
+/* Mixins */
+@mixin flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
-	&:hover {
-		background-color: $primary-200;
-		transform: translateY(-2px);
-	}
-
-	&:active {
-		transform: translateY(2px);
-	}
+/* Global Styles */
+* {
+	box-sizing: border-box;
 }
 
 body {
-	background-color: $bg-100;
-	color: $text-200;
+	margin: 0;
 	font-family: Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	color: $text-200;
+	background-color: $bg-100;
 }
 
 h2 {
-	color: $primary-100;
+	margin-top: 0;
 	font-size: 2rem;
-	margin-bottom: 20px;
+	text-align: center;
+	color: $text-100;
 }
 
 ul {
 	list-style-type: none;
-	margin: 0;
 	padding: 0;
+	margin: 0;
+}
 
-	li {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 10px;
-		margin-bottom: 10px;
-		background-color: $primary-200;
+li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	margin-bottom: 0.5rem;
+	background-color: $bg-200;
+	border-radius: 0.25rem;
 
-		&:last-child {
-			margin-bottom: 0;
+	span {
+		flex-grow: 1;
+
+		&.completed {
+			text-decoration: line-through;
 		}
+	}
 
-		span {
-			flex-grow: 1;
+	button {
+		padding: 0.5rem;
+		margin-left: 0.5rem;
+		border-radius: 0.25rem;
+		background-color: $primary-100;
+		color: $text-100;
 
-			&.completed {
-				text-decoration: line-through;
-				color: $accent-200;
-			}
-		}
-
-		button {
-			@include button-style;
-
-			& + button {
-				margin-left: 10px;
-				background-color: $accent-100;
-				color: $text-200;
-
-				&:hover {
-					background-color: $accent-200;
-				}
-			}
+		&:hover {
+			background-color: $primary-200;
 		}
 	}
 }
 
 form {
 	display: flex;
-	margin-top: 20px;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1rem;
 
 	input[type="text"] {
 		flex-grow: 1;
-		padding: 10px;
-		border-radius: 5px;
+		padding: 0.5rem;
+		margin-right: 0.5rem;
+		border-radius: 0.25rem;
 		border: none;
-		margin-right: 10px;
+		background-color: $bg-300;
 
 		&:focus {
 			outline: none;
@@ -100,34 +95,193 @@ form {
 	}
 
 	button[type="submit"] {
-		@include button-style;
-		flex-shrink: 0;
-		width: 150px;
-		font-size: 1.2rem;
+		padding: 0.5rem;
+		border-radius: 0.25rem;
+		background-color: $primary-100;
+		color: $text-100;
 
-		@media screen and (max-width: 600px) {
-			width: auto;
-			font-size: 1rem;
+		&:hover {
+			background-color: $primary-200;
 		}
 	}
 }
 
-@media screen and (max-width: 600px) {
-	ul li {
-		flex-wrap: wrap;
+div[ngIf="editedTask"] {
+	@include flex-center;
+
+	input[type="text"] {
+		padding: 0.5rem;
+		margin-right: 0.5rem;
+		border-radius: 0.25rem;
+		border: none;
+		background-color: $bg-300;
+
+		&:focus {
+			outline: none;
+			box-shadow: 0px 0px 5px $primary-100;
+		}
+	}
+
+	button {
+		padding: 0.5rem;
+		border-radius: 0.25rem;
+
+		&:first-of-type {
+			background-color: $primary-100;
+			color: $text-100;
+
+			&:hover {
+				background-color: $primary-200;
+			}
+		}
+
+		&:last-of-type {
+			background-color: $accent-100;
+			color: $text-200;
+
+			&:hover {
+				background-color: $accent-200;
+			}
+		}
+	}
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+	li {
+		flex-direction: column;
 
 		span {
-			flex-basis: 100%;
-			margin-bottom: 10px;
+			margin-bottom: 0.5rem;
+		}
+
+		button:last-of-type {
+			margin-left: auto;
+			margin-top: 0.5rem;
+		}
+	}
+}
+
+@media screen and (max-width: 480px) {
+	form,
+	div[ngIf="editedTask"] {
+		flex-direction: column;
+
+		input[type="text"] {
+			margin-right: 0;
+			margin-bottom: 0.5rem;
+		}
+
+		button[type="submit"] {
+			margin-top: 0.5rem;
+			margin-right: auto !important; /* override default margin */
+		}
+
+		button:last-of-type {
+			margin-left: auto !important; /* override default margin */
+			margin-top: 0.5rem !important; /* override default margin */
+		}
+
+		button:first-of-type {
+			margin-right: auto !important; /* override default margin */
+			margin-bottom: 0.5rem !important; /* override default margin */
+		}
+
+		button:last-of-type:not(:first-child) {
+			margin-bottom: 0.5rem !important; /* override default margin */
+		}
+
+		button:not(:last-of-type):not(:first-of-type) {
+			margin-bottom: 0.5rem !important; /* override default margin */
+		}
+
+		button:first-of-type:not(:last-child) {
+			margin-right: auto !important; /* override default margin */
+			margin-bottom: 0.5rem !important; /* override default margin */
+		}
+
+		button:last-child:not(:last-of-type) {
+			margin-bottom: unset !important; /* override default margin */
+		}
+
+		button:not(:last-child):not(:first-child) {
+			margin-bottom: unset !important; /* override default margin */
+		}
+
+		button:first-child:not(:last-of-type) {
+			margin-right: unset !important; /* override default margin */
+			margin-bottom: unset !important; /* override default margin */
+		}
+
+		button:last-child:not(:first-of-type) {
+			margin-left: unset !important; /* override default margin */
+			margin-top: unset !important; /* override default margin */
+		}
+
+		button:not(:last-child):not(:first-child):not(:last-of-type):not(:first-of-type) {
+			margin-bottom: unset !important; /* override default margin */
+		}
+
+		button:not(:last-child):not(:first-child):not(:last-of-type):not(:first-of-type):not(:nth-child(3)) {
+			margin-bottom: unset !important; /* override default margin */
+			margin-right: auto !important; /* override default margin */
+		}
+
+		button:not(:last-child):not(:first-child):not(:last-of-type):not(:first-of-type):nth-child(3) {
+			margin-bottom: .5rem !important; /* override default margin */
+		}
+
+		input[type="text"] {
+			width: auto !important; /*override default width*/
+		}
+
+		form {
+			width: auto !important; /*override default width*/
+		}
+
+		div[ngIf="editedTask"] {
+			width: auto !important; /*override default width*/
+		}
+
+		li {
+			width: auto !important; /*override default width*/
+		}
+
+		ul {
+			width: auto !important; /*override default width*/
+		}
+
+		body {
+			width: auto !important; /*override default width*/
+		}
+
+		h2 {
+			width: auto !important; /*override default width*/
 		}
 
 		button {
-			flex-basis: calc(50% - 5px);
-			margin-left: 0;
+			width: auto !important; /*override default width*/
+			height: auto !important; /*override default height*/
+		}
 
-			&:first-child {
-				margin-right: 10px;
-			}
+		input[type="text"] {
+			height: auto !important; /*override default height*/
+		}
+
+		li {
+			height: auto !important; /*override default height*/
+		}
+
+		ul {
+			height: auto !important; /*override default height*/
+		}
+
+		body {
+			height: auto !important; /*override default height*/
+		}
+
+		h2 {
+			height: auto !important; /*override default height*/
 		}
 	}
 }
