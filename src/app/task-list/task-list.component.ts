@@ -39,16 +39,6 @@ export class TaskListComponent {
     }
   }
 
-  cancelEdit() {
-    if (this.editedTask) {
-      const taskIndex = this.tasks.indexOf(this.editedTask);
-      if (taskIndex !== -1) {
-        this.tasks[taskIndex] = { ...this.editedTask }; // Revert to the original task
-      }
-      this.editedTask = null;
-    }
-  }
-  
   deleteTask(task: Task) {
     const taskIndex = this.tasks.indexOf(task);
     this.tasks.splice(taskIndex, 1);
