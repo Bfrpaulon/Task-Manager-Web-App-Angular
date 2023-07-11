@@ -1,27 +1,35 @@
-# TaskListApp
+# Task Manager Web App Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+This is a web application built using Angular, TypeScript, and SCSS that allows users to add, edit, and delete tasks as completed.
 
-## Development server
+## Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To get started with this project, follow these steps:
 
-## Code scaffolding
+1. Clone this repository to your local machine
+2. Navigate to the project directory in your terminal
+3. Run `npm install` to install all dependencies
+4. Run `ng serve` to start the development server
+5. Open your browser and navigate to `http://localhost:4200/`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+This task list app includes the following features:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Ability to add new tasks with a title
+- Ability to edit existing tasks
+- Ability to delete tasks as completed
+- Responsive design for mobile and desktop devices
 
-## Running unit tests
+## Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This project was built using the following technologies:
 
-## Running end-to-end tests
+- Angular 12
+- TypeScript 4
+- SCSS
+- HTML
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Credits
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project was created by [Bruno Paulonn]. If you have any questions or suggestions, please feel free to contact me at [brunopaulon@outlook.com.br].
